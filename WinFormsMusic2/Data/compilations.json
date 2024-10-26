@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 0,
+    "Title": null,
+    "Tracks": [],
+    "ReleaseYear": 0
+  },
+  {
+    "Id": 2,
+    "Title": "а",
+    "Tracks": [],
+    "ReleaseYear": 2322
+  },
+  {
+    "Id": 3,
+    "Title": "Ностальгия 2000х",
+    "Tracks": [],
+    "ReleaseYear": 2008
+  }
+]
