@@ -7,19 +7,10 @@ using WinFormsMusic2.Services;
 namespace WinFormsMusic2
 {
 
-    public partial class CompilationDetailsForm : Form
+    public partial class CompilationDetailsForm
     {
-        private Compilation _compilation;
-        private MusicCatalog _catalog;
-
-        public CompilationDetailsForm(Compilation compilation, MusicCatalog catalog)
-        {
-            InitializeComponent();
-            _compilation = compilation;
-            _catalog = catalog;
-            LoadCompilationDetails();
-            tracksListBox.DoubleClick += TracksListBox_DoubleClick;
-        }
+        private System.ComponentModel.IContainer components = null;
+        
         private void InitializeComponent()
         {
             this.compilationTitleLabel = new Label();

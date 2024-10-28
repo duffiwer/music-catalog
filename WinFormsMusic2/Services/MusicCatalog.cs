@@ -12,7 +12,7 @@ namespace WinFormsMusic2.Services
         public List<Artist> Artists { get; private set; }
         public List<Album> Albums { get; private set; }
         public List<Compilation> Compilations { get; private set; }
-        public List<WinFormsMusic2.Models.Track> Tracks { get; private set; }
+        public List<Track> Tracks { get; private set; }
 
         public MusicCatalog()
         {
@@ -24,7 +24,7 @@ namespace WinFormsMusic2.Services
             Artists = LoadFromFile<Artist>(ArtistsFile);
             Albums = LoadFromFile<Album>(AlbumsFile);
             Compilations = LoadFromFile<Compilation>(CompilationsFile);
-            Tracks = LoadFromFile<WinFormsMusic2.Models.Track>(TracksFile);
+            Tracks = LoadFromFile<Track>(TracksFile);
            
         }
 

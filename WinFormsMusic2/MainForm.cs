@@ -14,7 +14,7 @@ namespace WinFormsMusic2
         public MainForm()
         {
             InitializeComponent();
-            searchTypeComboBox.Items.AddRange(new string[] { "Исполнители", "Альбомы", "Сборники" });
+            searchTypeComboBox.Items.AddRange(new string[] { "Исполнители", "Альбомы", "Сборники","Треки" });
             searchTypeComboBox.SelectedIndex = 0;
 
             _searchStrategy = new ArtistSearchStrategy();
@@ -62,6 +62,9 @@ namespace WinFormsMusic2
                 case "Сборники":
                     _searchStrategy = new CompilationSearchStrategy();
                     break;
+                case "Треки":
+                    _searchStrategy = new TrackSearchStrategy();
+                    break;
             }
             LoadDefaultData();
         }
@@ -82,7 +85,12 @@ namespace WinFormsMusic2
                 resultsListBox.DataSource = _catalog.Compilations;
                 resultsListBox.DisplayMember = "Title";
             }
-          
+            else if (_searchStrategy is TrackSearchStrategy)
+            {
+                resultsListBox.DataSource = _catalog.Tracks;
+                resultsListBox.DisplayMember = "Title";
+            }
+
         }
         private void searchButton_Click(object sender, EventArgs e)
         {
@@ -121,6 +129,10 @@ namespace WinFormsMusic2
             else if (results.FirstOrDefault() is Compilation)
             {
                 resultsListBox.DisplayMember = "Title";   
+            }
+            else if (results.FirstOrDefault() is Track)
+            {
+                resultsListBox.DisplayMember = "Title";
             }
         }
 
@@ -212,6 +224,11 @@ namespace WinFormsMusic2
             {
                 var compilationDetailsForm = new CompilationDetailsForm(selectedCompilation, _catalog);
                 compilationDetailsForm.Show();
+            }
+            else if (selectedItem is Track selectedTrack)
+            {
+                var trackDetailsForm = new TrackDetailsForm(selectedTrack, _catalog);
+                trackDetailsForm.Show();
             }
         }
         

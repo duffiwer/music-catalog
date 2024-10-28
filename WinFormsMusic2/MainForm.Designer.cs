@@ -138,7 +138,7 @@ namespace WinFormsMusic2
 
             this.searchTextBox.Location = new System.Drawing.Point(150, 200);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.PlaceholderText = "Введите запрос";
+            this.searchTextBox.PlaceholderText = "Название";
             this.searchTextBox.Size = new System.Drawing.Size(100, 23);
 
             this.resultsListBox.Location = new System.Drawing.Point(20, 240);

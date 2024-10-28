@@ -20,3 +20,4 @@ C:\Users\duffi\source\repos\WinFormsMusic2\WinFormsMusic2\obj\Debug\net8.0-windo
 C:\Users\duffi\source\repos\WinFormsMusic2\WinFormsMusic2\obj\Debug\net8.0-windows\WinFormsMusic2.ArtistDetailsForm.resources
 C:\Users\duffi\source\repos\WinFormsMusic2\WinFormsMusic2\obj\Debug\net8.0-windows\WinFormsMusic2.AlbumDetailsForm.resources
 C:\Users\duffi\source\repos\WinFormsMusic2\WinFormsMusic2\obj\Debug\net8.0-windows\WinFormsMusic2.CompilationDetailsForm.resources
+C:\Users\duffi\source\repos\WinFormsMusic2\WinFormsMusic2\obj\Debug\net8.0-windows\WinFormsMusic2.TrackDetailsForm.resources

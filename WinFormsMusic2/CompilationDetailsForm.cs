@@ -1,12 +1,23 @@
 ﻿using System.Windows.Forms;
 using WinFormsMusic2.Models;
+using WinFormsMusic2.Services;
 
 namespace WinFormsMusic2
 {
-    partial class CompilationDetailsForm
+    partial class CompilationDetailsForm : Form
     {
-        private System.ComponentModel.IContainer components = null;
 
+
+        private Compilation _compilation;
+        private MusicCatalog _catalog;
+        public CompilationDetailsForm(Compilation compilation, MusicCatalog catalog)
+        {
+            InitializeComponent();
+            _compilation = compilation;
+            _catalog = catalog;
+            LoadCompilationDetails();
+            tracksListBox.DoubleClick += TracksListBox_DoubleClick;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
