@@ -2,16 +2,13 @@ namespace WinFormsMusic2
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm()); // Замените Form1 на MusicCatalogForm
+            Application.Run(new MainForm()); 
         }
     }
 }

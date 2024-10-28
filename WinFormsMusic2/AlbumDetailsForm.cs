@@ -21,23 +21,18 @@ namespace WinFormsMusic2
 
         private void LoadAlbumDetails()
         {
-            // Отображение информации об альбоме
             albumTitleLabel.Text = "Название: "+_album.Title;
+            albumReleaseDateLabel.Text = _album.ReleaseYear.ToString()+"\n\n\nТреки";
 
-            // Отображение года выпуска
-            albumReleaseDateLabel.Text = _album.ReleaseYear.ToString()+"\n\n\nТреки"; // Преобразование int в string
-
-            // Получение исполнителя по ArtistId
             var artist = _catalog.Artists.FirstOrDefault(a => a.Id == _album.ArtistId);
             if (artist != null)
             {
-                albumArtistLabel.Text ="Исполнитель: "+ artist.Name; // Отображение имени исполнителя
+                albumArtistLabel.Text ="Исполнитель: "+ artist.Name; 
             }
 
-            // Получение треков альбома
             var tracks = _catalog.Tracks.Where(t => t.AlbumId == _album.Id).ToList();
             tracksListBox.DataSource = tracks;
-            tracksListBox.DisplayMember = "Title"; // Свойство Title в классе Track
+            tracksListBox.DisplayMember = "Title"; 
         }
 
     }

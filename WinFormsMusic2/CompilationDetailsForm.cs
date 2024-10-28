@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using WinFormsMusic2.Models;
 
 namespace WinFormsMusic2
 {
@@ -15,29 +16,38 @@ namespace WinFormsMusic2
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent()
+
+        private void LoadCompilationDetails()
         {
-            this.compilationTitleLabel = new Label();
-            this.compilationYearLabel = new Label();
-            this.tracksListBox = new ListBox();
+            compilationTitleLabel.Text = "Название сборника: " + _compilation.Title;
+            compilationYearLabel.Text = "Год выпуска: " + _compilation.ReleaseYear;
 
-            this.compilationTitleLabel.AutoSize = true;
-            this.compilationTitleLabel.Location = new System.Drawing.Point(20, 20);
-            this.compilationTitleLabel.Text = "Название сборника";
-
-            this.tracksListBox.Location = new System.Drawing.Point(20, 80);
-            this.tracksListBox.Size = new System.Drawing.Size(200, 150);
-
-            this.ClientSize = new System.Drawing.Size(400, 300);
-            this.Controls.Add(this.compilationTitleLabel);
-            this.Controls.Add(this.tracksListBox);
-            this.Text = "Информация о сборнике";
+           
+            var tracks = _catalog.Tracks.Where(t => t.CompilationId == _compilation.Id).ToList();
+            tracksListBox.DataSource = tracks;
+            tracksListBox.DisplayMember = "Title";
+          
+           
         }
 
-        private Label compilationTitleLabel;
-        private ListBox tracksListBox;
-        private Label compilationYearLabel;
-        private ListBox artistsListBox;
+
+        private void TracksListBox_DoubleClick(object sender, EventArgs e)
+        {
+            if (tracksListBox.SelectedItem is Track selectedTrack)
+            {
+                var album = _catalog.Albums.FirstOrDefault(a => a.Id == selectedTrack.AlbumId);
+
+                if (album != null)
+                {
+                    var artist = _catalog.Artists.FirstOrDefault(a => a.Id == album.ArtistId);
+                    MessageBox.Show(artist != null ? "Исполнитель: " + artist.Name : "Исполнитель для выбранного трека не найден.", "Информация об исполнителе");
+                }
+                else
+                {
+                    MessageBox.Show("Альбом для выбранного трека не найден.", "Ошибка");
+                }
+            }
+        }
 
     }
 }

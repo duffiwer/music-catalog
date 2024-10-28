@@ -1,12 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WinFormsMusic2.Models;
-using WinFormsMusic2.SearchStrategies;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 namespace WinFormsMusic2.Services
 {
     public class MusicCatalog
@@ -32,6 +25,7 @@ namespace WinFormsMusic2.Services
             Albums = LoadFromFile<Album>(AlbumsFile);
             Compilations = LoadFromFile<Compilation>(CompilationsFile);
             Tracks = LoadFromFile<WinFormsMusic2.Models.Track>(TracksFile);
+           
         }
 
         private List<T> LoadFromFile<T>(string filePath)
@@ -44,12 +38,19 @@ namespace WinFormsMusic2.Services
             return JsonConvert.DeserializeObject<List<T>>(jsonData) ?? new List<T>();
         }
 
-        private void SaveToFile<T>(string filePath, List<T> data)
+        public void SaveToFile<T>(string filePath, List<T> data)
         {
             var jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(filePath, jsonData);
         }
-
+        public void SaveTracks()
+        {
+            SaveToFile(TracksFile, Tracks);
+        }
+        public void SaveCompilations()
+        {
+            SaveToFile(CompilationsFile, Compilations);
+        }
         public void AddArtist(Artist artist)
         {
             artist.Id = Artists.Count + 1;
@@ -63,14 +64,15 @@ namespace WinFormsMusic2.Services
             Albums.Add(album);
             SaveToFile(AlbumsFile, Albums);
         }
-        
+
         public void AddCompilation(Compilation compilation)
         {
             compilation.Id = Compilations.Count + 1;
+            compilation.TrackIds = compilation.Tracks.Select(t => t.Id).ToList(); 
             Compilations.Add(compilation);
             SaveToFile(CompilationsFile, Compilations);
         }
-    
+
         public void AddTrack(WinFormsMusic2.Models.Track track)
         {
             track.Id = Tracks.Count + 1;

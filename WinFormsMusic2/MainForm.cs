@@ -15,8 +15,12 @@ namespace WinFormsMusic2
         {
             InitializeComponent();
             searchTypeComboBox.Items.AddRange(new string[] { "Исполнители", "Альбомы", "Сборники" });
-            searchTypeComboBox.SelectedIndex = 0;  
-            SetSearchStrategy();
+            searchTypeComboBox.SelectedIndex = 0;
+
+            _searchStrategy = new ArtistSearchStrategy();
+            LoadDefaultData();
+            _catalog.SaveTracks();
+
             searchTypeComboBox.SelectedIndexChanged += (s, e) => SetSearchStrategy();
         }
         private void addArtistButton_Click(object sender, EventArgs e)
@@ -59,7 +63,26 @@ namespace WinFormsMusic2
                     _searchStrategy = new CompilationSearchStrategy();
                     break;
             }
-            
+            LoadDefaultData();
+        }
+        private void LoadDefaultData()
+        {
+            if (_searchStrategy is ArtistSearchStrategy)
+            {
+                resultsListBox.DataSource = _catalog.Artists;
+                resultsListBox.DisplayMember = "Name";
+            }
+            else if (_searchStrategy is AlbumSearchStrategy)
+            {
+                resultsListBox.DataSource = _catalog.Albums;
+                resultsListBox.DisplayMember = "Title";
+            }
+            else if (_searchStrategy is CompilationSearchStrategy)
+            {
+                resultsListBox.DataSource = _catalog.Compilations;
+                resultsListBox.DisplayMember = "Title";
+            }
+          
         }
         private void searchButton_Click(object sender, EventArgs e)
         {
@@ -70,8 +93,19 @@ namespace WinFormsMusic2
             var results = _searchStrategy.Search(_catalog, query);
 
             resultsListBox.DataSource = results;
-            resultsListBox.DisplayMember = "Name";
+
+            if (_searchStrategy is ArtistSearchStrategy)
+                resultsListBox.DisplayMember = "Name";
+            else
+                resultsListBox.DisplayMember = "Title";
         }
+
+        private void ChangeSearchStrategy(ISearchStrategy newStrategy)
+        {
+            _searchStrategy = newStrategy;
+            LoadDefaultData();
+        }
+
         private void DisplayResults(List<object> results)
         {
             resultsListBox.DataSource = results;
@@ -129,7 +163,7 @@ namespace WinFormsMusic2
             }
         }
 
- 
+
         private void addTrackToCompilationButton_Click(object sender, EventArgs e)
         {
             if (int.TryParse(trackIdTextBox.Text, out int trackId) &&
@@ -141,6 +175,10 @@ namespace WinFormsMusic2
                 if (trackToAdd != null && compilation != null)
                 {
                     compilation.Tracks.Add(trackToAdd);
+                    trackToAdd.CompilationId = compilationId;
+
+                    _catalog.SaveCompilations(); 
+                    _catalog.SaveTracks();      
                     MessageBox.Show($"Трек '{trackToAdd.Title}' добавлен в сборник '{compilation.Title}'.");
                 }
                 else
@@ -153,6 +191,8 @@ namespace WinFormsMusic2
                 MessageBox.Show("Пожалуйста, введите корректные ID трека и сборника.");
             }
         }
+       
+
         private void resultsListBox_Click(object sender, EventArgs e)
         {
            
@@ -174,8 +214,7 @@ namespace WinFormsMusic2
                 compilationDetailsForm.Show();
             }
         }
-
-
+        
         private void ClearArtistFields()
         {
             artistNameTextBox.Clear();
@@ -201,7 +240,4 @@ namespace WinFormsMusic2
             trackGenreTextBox.Clear();
         }
     }
-
-
-
 }

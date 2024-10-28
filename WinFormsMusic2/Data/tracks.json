@@ -3,24 +3,35 @@
     "Id": 1,
     "Title": "Сюси пуси",
     "Genre": "поп",
-    "AlbumId": 3
+    "AlbumId": 3,
+    "CompilationId": 1
   },
   {
     "Id": 2,
     "Title": "Муси пуси",
     "Genre": "поп",
-    "AlbumId": 3
+    "AlbumId": 3,
+    "CompilationId": 1
   },
   {
     "Id": 3,
     "Title": "Не уходи",
     "Genre": "поп",
-    "AlbumId": 4
+    "AlbumId": 4,
+    "CompilationId": 1
   },
   {
     "Id": 4,
     "Title": "Дора дура",
     "Genre": "кьют-рок",
-    "AlbumId": 5
+    "AlbumId": 5,
+    "CompilationId": 0
+  },
+  {
+    "Id": 5,
+    "Title": "Невозможное возможно",
+    "Genre": "поп",
+    "AlbumId": 6,
+    "CompilationId": 1
   }
 ]

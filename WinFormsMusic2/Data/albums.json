@@ -1,18 +1,5 @@
 [
-  {
-    "Id": 1,
-    "Title": "wef",
-    "ReleaseYear": 2021,
-    "ArtistId": 1,
-    "Tracks": []
-  },
-  {
-    "Id": 2,
-    "Title": "g",
-    "ReleaseYear": 2222,
-    "ArtistId": 2,
-    "Tracks": []
-  },
+  
   {
     "Id": 3,
     "Title": "Любовная любовь",
@@ -32,6 +19,13 @@
     "Title": "Милашка",
     "ReleaseYear": 2023,
     "ArtistId": 4,
+    "Tracks": []
+  },
+  {
+    "Id": 6,
+    "Title": "Я Дима",
+    "ReleaseYear": 2010,
+    "ArtistId": 5,
     "Tracks": []
   }
 ]

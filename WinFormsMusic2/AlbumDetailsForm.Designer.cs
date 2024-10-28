@@ -21,7 +21,7 @@ namespace WinFormsMusic2
             this.albumGenreLabel = new Label();
             this.albumReleaseDateLabel = new Label();
             this.tracksListBox = new ListBox();
-            this.albumArtistLabel = new Label(); // Инициализируем поле исполнителя
+            this.albumArtistLabel = new Label(); 
 
             this.albumTitleLabel.AutoSize = true;
             this.albumTitleLabel.Location = new System.Drawing.Point(20, 20);
@@ -29,7 +29,7 @@ namespace WinFormsMusic2
 
             this.albumArtistLabel.AutoSize = true;
             this.albumArtistLabel.Location = new System.Drawing.Point(20, 50);
-            this.albumArtistLabel.Text = "Исполнитель"; // Место для имени исполнителя
+            this.albumArtistLabel.Text = "Исполнитель"; 
 
             this.albumReleaseDateLabel.AutoSize = true;
             this.albumReleaseDateLabel.Location = new System.Drawing.Point(20, 80);
